@@ -103,7 +103,7 @@ if(choice_mastery == 'General'):
 else:
     # if their choice master is special, they should have two special masteries then
     # It is possible to choose the same special mastery twice, so no need to remove
-    for i in range(1, 2):
+    for i in range(1, 3):
         temp_choice = random.choice(special_masteries)
         masteries.append(temp_choice)
 

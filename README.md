@@ -4,8 +4,6 @@ NPC Generator for Harry Potter Tabletop game
 Purpose: Script for generating non-player-characters for Harry Potter tabletop. Easy way to generate Hogwarts students with varying skillsets and interests
 
 ## Future Improvements
- - Randomly generate gender of character
- - Adding a name generator, dependent on gender of character
  - Further optimization and code clean up
  - Import to CSV or Google sheets(?)
 

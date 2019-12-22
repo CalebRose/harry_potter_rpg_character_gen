@@ -1,6 +1,7 @@
 # Imports
 import random
 import names
+import csv
 # Generate Character
 
 
@@ -27,6 +28,8 @@ name = names.get_full_name(gender)
 
 # Houses
 houses = ['Gryffindor', 'Slytherin', 'Ravenclaw', 'Hufflepuff']
+backgrounds = ['Wizard-Raised Halfblood',
+               'Muggle-Raised Halfblood', 'Muggleborn', 'Pureblood']
 
 
 def selectHouse(houses):
@@ -45,22 +48,21 @@ power = 1
 # Increase attribute points by the year of the student
 if(year > 1):
     attribute_points += (year - 1)
+house = selectHouse(houses)
+if(house == 'Slytherin'):
+    backgrounds.remove('Muggleborn')
 
-background = random.choice(
-    ['Wizard-Raised Halfblood', 'Muggle-Raised halfblood', 'Muggleborn', 'Pureblood'])
+background = random.choice(backgrounds)
 school_credits = 0
 perks = 0
 if(background == 'Wizard-Raised Halfblood'):
     school_credits = 2
-elif(background == 'Muggle-Raised halfblood'):
+elif(background == 'Muggle-Raised Halfblood'):
     school_credits = 2
 elif(background == 'Muggleborn'):
-    houses.remove('Slytherin')
     perks = 1
 else:
     school_credits = 3
-
-house = selectHouse(houses)
 
 # Distribute attribute points
 attributes = ['Finesse', 'Intelligence', 'Spirit', 'Power']
@@ -94,8 +96,8 @@ if(choice_mastery == 'General'):
     temp_choice = random.choice(general_masteries)
     # If the first choice is flawed, the character should then have
     # a general master and a special mastery, and one general mastery as their flawed mastery
+    masteries.append(temp_choice)
     if(temp_choice == 'Flawed'):
-        masteries.append(temp_choice)
         # Remove Flawed, the Gift, and Metamorph
         general_masteries.remove(temp_choice)
         general_masteries.remove('The Gift')
@@ -177,5 +179,11 @@ npc.masteries = masteries
 if(flaw != ''):
     npc.flaw = flaw
 npc.perks = chosen_perks
-npc.wand = wand
+npc.wand = wand['wood_type'] + ', ' + wand['core_type'] + ', ' + wand['Length']
 print(npc.__dict__)
+
+with open('students.csv', 'a', newline='\n') as csvfile:
+    writer = csv.writer(csvfile, delimiter='|',
+                        quotechar='"', quoting=csv.QUOTE_MINIMAL)
+    writer.writerow([npc.name, npc.gender, npc.year, npc.background, npc.house,
+                     npc.finesse, npc.intelligence, npc.spirit, npc.power, npc.masteries, npc.flaw, npc.perks, npc.wand])

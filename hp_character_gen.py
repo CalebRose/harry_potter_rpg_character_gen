@@ -1,10 +1,13 @@
 # Imports
 import random
+import names
 # Generate Character
 
 
 class character:
     def __init__(self):
+        self.name = None
+        self.gender = None
         self.background = None
         self.year = 0
         self.house = None
@@ -17,8 +20,10 @@ class character:
         self.wand = None
         self.perks = None
 
-# Name randomized Online
 
+# Name randomized Online
+gender = random.choice(['male', 'female'])
+name = names.get_full_name(gender)
 
 # Houses
 houses = ['Gryffindor', 'Slytherin', 'Ravenclaw', 'Hufflepuff']
@@ -159,6 +164,8 @@ wand = {
 #     elif(masteries[i] == 'The Gift'):
 
 npc = character()
+npc.gender = gender
+npc.name = name
 npc.year = year
 npc.background = background
 npc.house = house

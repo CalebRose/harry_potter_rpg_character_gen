@@ -36,9 +36,24 @@ def selectHouse(houses):
     return random.choice(houses)
 
 
-# years
-year = random.randint(1, 7)
-
+# years as a student
+# Generating a weighted number. Based on the number generated, the student's year will be generated
+weight = random.randint(1, 100)
+year = 0
+if(weight >= 1 and weight <= 40):
+    year = 1
+elif(weight >= 41 and weight <= 55):
+    year = 2
+elif(weight >= 56 and weight <= 70):
+    year = 3
+elif(weight >= 71 and weight <= 80):
+    year = 4
+elif(weight >= 81 and weight <= 90):
+    year = 5
+elif(weight >= 91 and weight <= 95):
+    year = 6
+else:
+    year = 7
 # Attributes
 attribute_points = 3
 finesse = 1
